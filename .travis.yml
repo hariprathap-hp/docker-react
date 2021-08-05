@@ -8,13 +8,18 @@ before_install:
 script:
   - docker run -e CI=true deadpoet/docker-react npm run test -- --coverage
 
-#deploy:
+deploy:
   #refer section 103
-  #provider: elasticbeanstalk 
-  #region: "us-west-2"
-  #app: <app name in aws>
-  #env: Docker-env
-  #bucket_name: To store all the code in our github repo and store it inside a s3 repo in our aws account
-  #bucker_path:
-  #on:
-    #branch: master
+  provider: elasticbeanstalk 
+  region: "ap-south-1"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-811237443234"
+  #app name acts as the bucket-path
+  bucker_path: "docker-react"
+  on:
+    branch: master
+  #Need API keys to provide access to travis to use AWS EBS
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
