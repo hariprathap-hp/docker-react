@@ -7,3 +7,14 @@ before_install:
 
 script:
   - docker run -e CI=true deadpoet/docker-react npm run test -- --coverage
+
+#deploy:
+  #refer section 103
+  #provider: elasticbeanstalk 
+  #region: "us-west-2"
+  #app: <app name in aws>
+  #env: Docker-env
+  #bucket_name: To store all the code in our github repo and store it inside a s3 repo in our aws account
+  #bucker_path:
+  #on:
+    #branch: master
